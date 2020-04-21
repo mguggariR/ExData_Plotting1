@@ -12,28 +12,24 @@
                    ObsDate=as.Date(mySubDF$Date, "%d/%m/%Y"),
                    ObsTime=strptime(paste(mySubDF$Date, mySubDF$Time, sep = " "), "%d/%m/%Y %H:%M:%OS"),
                                       
-                   ## GlobalActivePower=as.numeric(mySubDF$Global_active_power),
+                   GlobalActivePower=as.numeric(mySubDF$Global_active_power)
                    ## GlobalReactivePower= as.numeric(mySubDF$Global_reactive_power),
                    ## Voltage=as.numeric(mySubDF$Voltage),
                    ## GlobalIntensity=as.numeric(mySubDF$Global_intensity),
-                   SubMeter1=as.integer(mySubDF$Sub_metering_1),
-                   SubMeter2=as.integer(mySubDF$Sub_metering_2),
-                   SubMeter3=as.integer(mySubDF$Sub_metering_3)
+                   ## SubMeter1=as.integer(mySubDF$Sub_metering_1),
+                   ## SubMeter2=as.integer(mySubDF$Sub_metering_2)
                    )
         startDate <- as.Date("2007-02-01")
         endDate <- as.Date("2007-02-02")
 
         mySubsetDF <- myDF[myDF$ObsDate <= endDate &  myDF$ObsDate >= startDate, ] ## Select subset of data from just two days
         
-        png(filename="plot2.png")
+        png(filename="plot2.png", width = 480, height = 480, units = "px")
         
-        plot(mySubsetDF$ObsTime, mySubsetDF$SubMeter1, type = "l", col="black", ylab = "Energy sub metering", xlab = "")
-        lines(mySubsetDF$ObsTime, mySubsetDF$SubMeter2, col="red")
-        lines(mySubsetDF$ObsTime, mySubsetDF$SubMeter3, col="blue")
-        legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd = c(2,2,2), col=c("black","red", "Blue"))
-
+        plot(mySubsetDF$ObsTime, mySubsetDF$GlobalActivePower, type = "l", col="black", ylab = "Global Active Power (killowatts)", xlab = "")
+        
         dev.off()
-
+        
 
 
 

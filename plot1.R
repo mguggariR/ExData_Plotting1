@@ -24,7 +24,7 @@
 
         mySubsetDF <- myDF[myDF$ObsDate <= endDate &  myDF$ObsDate >= startDate, ] ## Select subset of data from just two days
         
-        png(filename="plot1.png")
+        png(filename="plot1.png", width = 480, height = 480, units = "px")
         hist(mySubsetDF$GlobalActivePower, col = "red", xlab = "Global Active Power (killowatts)", main = "Global Active Power")
         dev.off()
         
