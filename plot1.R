@@ -22,7 +22,10 @@ GenerateFirstPlot <- function(){
         endDate <- as.Date("2007-02-02")
 
         mySubsetDF <- myDF[myDF$ObsDate <= endDate &  myDF$ObsDate >= startDate, ]
+        
+        png(filename="plot1.png")
         hist(mySubsetDF$GlobalActivePower, col = "red", xlab = "Global Active Power (killowatts)", main = "Global Active Power")
+        dev.off()
         }
 
 
